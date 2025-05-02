@@ -1,5 +1,6 @@
 import MessageBar from "@/components/MessageBar";
 import { images } from "@/constants/images";
+import { useHeaderHeight } from "@react-navigation/elements";
 import { useState } from 'react';
 import {
   Image,
@@ -8,22 +9,21 @@ import {
   Text,
   TouchableWithoutFeedback,
   View
-} from 'react-native';
+} from "react-native";
 
 export default function Index() {
   const [answer, setAnswer] = useState(null);
+  const height = useHeaderHeight();
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View className="flex-1 bg-primary">
-        {/* Фоновое изображение */}
         <Image
           source={images.bg}
           className="absolute w-full h-full z-0"
           resizeMode="cover"
         />
 
-        {/* Основной контент с отступом для клавиатуры */}
         <ScrollView
           className="flex-1 px-5"
           contentContainerStyle={{
@@ -47,8 +47,10 @@ export default function Index() {
           )}
         </ScrollView>
 
-        {/* Панель ввода с динамическим отступом */}
-        <View className="absolute top-3/4 bottom-0 right-0 left-0 justify-center items-center border-1 border-white rounded-lg">
+        <View
+          className="absolute top-[10%] bottom-0 right-0 left-0 justify-center border-1 h-1 border-[#a8b5db] rounded-lg bg-slate-100 w-[90%]
+                min-h-16"
+        >
           <MessageBar />
         </View>
       </View>

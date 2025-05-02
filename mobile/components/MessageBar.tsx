@@ -1,35 +1,38 @@
 import { icons } from "@/constants/icons";
 import React, { useState } from 'react';
-import { Image, TextInput, View } from "react-native";
+import { Image, Platform, TextInput, TouchableOpacity, View } from "react-native";
 
 const MessageBar = () => {
-  const [isFocuses, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const [textValue, setTextValue] = useState('');
 
   return (
-    <View className="flex-row items-center bg-light-100 rounded-full px-5 py-4">
+    <View className="flex-row items-center bg-light-100 rounded-full px-4 py-2">
       <TextInput
-        multiline={true}
-        numberOfLines={4}
-        onPress={() => {}}
-        onChangeText={(value) => setTextValue(value)}
-        placeholder="Введи свой запрос"
+        multiline
         value={textValue}
+        onChangeText={setTextValue}
+        placeholder="Введи свой запрос"
         placeholderTextColor="#a8b5db"
-        className="h-12 w-4/5 px-4 text-[#a8b5db] bg-white"
+        className="flex-1 text-secondary bg-white text-base"
         style={{
-          textAlignVertical: "center",
+          maxHeight: 120,
+          paddingTop: Platform.select({ ios: 12, android: 8 }),
+          paddingBottom: Platform.select({ ios: 12, android: 8 }),
+          textAlignVertical: 'center',
           includeFontPadding: false,
         }}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-      ></TextInput>
-      <Image
-        source={icons.send}
-        className="size-5"
-        resizeMode="contain"
-        tintColor="#ab8bff"
       />
+      
+      <TouchableOpacity className="ml-2 p-2" disabled={!textValue}>
+        <Image
+          source={icons.send}
+          className="w-6 h-6 size-5"
+          style={{ tintColor: textValue ? "#7C3AED" : "#D1D5DB" }}
+        />
+      </TouchableOpacity>
     </View>
   );
 }
