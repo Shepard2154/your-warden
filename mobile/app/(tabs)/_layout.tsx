@@ -74,7 +74,7 @@ export default function _Layout() {
           headerShown: false,
           title: "Цель",
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.person} title={"Цель"} />
+            <TabIcon focused={focused} icon={icons.goal} title={"Цель"} />
           ),
         }}
       />
@@ -94,7 +94,7 @@ export default function _Layout() {
           headerShown: false,
           title: "История",
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.star} title={"История"} />
+            <TabIcon focused={focused} icon={icons.history} title={"История"} />
           ),
         }}
       />
