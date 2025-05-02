@@ -26,7 +26,7 @@ const MessageBar = () => {
         onBlur={() => setIsFocused(false)}
       />
       
-      <TouchableOpacity className="ml-2 p-2" disabled={!textValue}>
+      <TouchableOpacity className="p-2" disabled={!textValue}>
         <Image
           source={icons.send}
           className="w-6 h-6 size-5"

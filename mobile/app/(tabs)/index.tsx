@@ -47,11 +47,10 @@ export default function Index() {
           )}
         </ScrollView>
 
-        <View
-          className="absolute top-[10%] bottom-0 right-0 left-0 justify-center border-1 h-1 border-[#a8b5db] rounded-lg bg-slate-100 w-[90%]
-                min-h-16"
-        >
-          <MessageBar />
+        <View className="absolute top-0 bottom-[50%] right-0 left-0 justify-center items-center">
+          <View className="w-[90%] min-h-16 border border-[#a8b5db] rounded-lg bg-slate-100 justify-center">
+            <MessageBar />
+          </View>
         </View>
       </View>
     </TouchableWithoutFeedback>
