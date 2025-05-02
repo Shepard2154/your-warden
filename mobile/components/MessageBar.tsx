@@ -16,7 +16,7 @@ const MessageBar = () => {
         placeholder="Введи свой запрос"
         value={textValue}
         placeholderTextColor="#a8b5db"
-        className="h-12 w-4/5 border-2 border-purple-600 rounded-lg px-4 text-[#a8b5db] bg-white"
+        className="h-12 w-4/5 px-4 text-[#a8b5db] bg-white"
         style={{
           textAlignVertical: "center",
           includeFontPadding: false,
