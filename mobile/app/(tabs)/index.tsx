@@ -64,7 +64,7 @@ export default function Index() {
               <ActivityIndicator
                 size="large"
                 color="#FFFFFF"
-                className="flex-1 justify-center items-center min-h-[50vh]"
+                className="flex-1 justify-start items-center min-h-[50vh]"
               />
             ) : answerError ? (
               <View className="flex-1 justify-center items-center min-h-[50vh]">
