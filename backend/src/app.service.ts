@@ -12,10 +12,15 @@ export class AppService {
 
   async generateAnswer(CreateQuestionDto: CreateQuestionDto): Promise<GenerateContentResponse> {
     let { question } = { ...CreateQuestionDto };
+    const goal = 'Похудеть к лету';
     const response = await this.ai.models.generateContent({
       model: process.env.AI_MODEL ?? 'gemini-2.0-flash',
       contents: question,
+      config: {
+        systemInstruction: `Ты личный ассистент на пути к цели: ${goal}. Твое имя Надзиратель.`,
+      },
     });
-    return response;
+    //@ts-ignore
+    return { answer: response.text };
   }
 }

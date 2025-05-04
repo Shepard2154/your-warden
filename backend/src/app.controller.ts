@@ -17,7 +17,9 @@ export class AppController {
   async generateAnswer(
     @Body() createQuestionDto: CreateQuestionDto,
   ): Promise<GenerateContentResponse> {
-    console.log('my question', createQuestionDto);
-    return await this.appService.generateAnswer(createQuestionDto);
+    console.log('Question: ', createQuestionDto);
+    const result = await this.appService.generateAnswer(createQuestionDto);
+    console.log('Answer: ', result);
+    return result;
   }
 }
