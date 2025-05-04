@@ -94,7 +94,7 @@ export default function _Layout() {
           headerShown: false,
           title: "Настройки",
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.settings} title={"Настройки"} />
+            <TabIcon focused={focused} icon={icons.settings} title={"Ключ"} />
           ),
         }}
       />
