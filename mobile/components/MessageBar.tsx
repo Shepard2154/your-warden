@@ -20,7 +20,7 @@ const MessageBar = (props: Props) => {
         placeholderTextColor="#000"
         className="flex-1 text-secondary text-base"
         style={{
-          maxHeight: 120,
+          maxHeight: 60,
           paddingTop: Platform.select({ ios: 12, android: 8 }),
           paddingBottom: Platform.select({ ios: 12, android: 8 }),
           textAlignVertical: "center",
@@ -41,7 +41,7 @@ const MessageBar = (props: Props) => {
         <Image
           source={icons.send}
           className="w-6 h-6 size-5"
-          style={{ tintColor: textValue ? "#7C3AED" : "#D1D5DB" }}
+          style={{ tintColor: textValue ? "#7C3AED" : "gray" }}
         />
       </TouchableOpacity>
     </View>

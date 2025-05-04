@@ -53,11 +53,11 @@ export default function Index() {
             keyboardShouldPersistTaps="handled"
             overScrollMode="always"
             nestedScrollEnabled={true}
-            removeClippedSubviews={false} // Важно для Android
-            collapsable={false} // Запрет оптимизации
+            removeClippedSubviews={false}
+            collapsable={false}
             style={{
               zIndex: 1,
-              backgroundColor: "transparent", // Пример фона
+              backgroundColor: "transparent",
             }}
           >
             {answerIsLoading ? (
@@ -74,10 +74,10 @@ export default function Index() {
               </View>
             ) : answerData ? (
               <View
-                className="flex-1 justify-center items-center min-h-[50vh]"
+                className="flex-1 justify-center items-center min-h-[80vh]"
                 onStartShouldSetResponder={() => true}
               >
-                <View className="mb-10">
+                <View className="mb-20">
                   <Text className="text-accent text-lg mb-2">Ваш вопрос:</Text>
                   <Text className="text-white text-lg font-bold mb-4">
                     {questionQuery}
@@ -89,7 +89,7 @@ export default function Index() {
                 </View>
               </View>
             ) : (
-              <View className="flex-1 justify-center items-center min-h-[50vh]">
+              <View className="flex-1 justify-center items-center min-h-[80vh]">
                 <View className="mb-10">
                   <Text className="font-semibold text-accent text-3xl text-center mb-4">
                     Hi, я твой ассистент на пути к цели!
@@ -104,7 +104,7 @@ export default function Index() {
         </View>
 
         <View className="absolute top-0 bottom-[70%] right-0 left-0 justify-center items-center">
-          <View className="w-[90%] min-h-16 justify-center">
+          <View className="w-[90%] justify-center">
             <MessageBar
               sendQuestion={(message) => {
                 setQuestionQuery(message);
