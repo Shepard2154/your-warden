@@ -1,9 +1,10 @@
-import { icons } from "@/constants/icons";
 import React, { useState } from 'react';
-import { Image, Platform, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, ImageSourcePropType, Platform, TextInput, TouchableOpacity, View } from "react-native";
 
 type Props = {
-  sendQuestion: (question: string) => void;
+  sendMessage: (question: string) => void;
+  icon: ImageSourcePropType;
+  placeholder: string;
 };
 
 const MessageBar = (props: Props) => {
@@ -16,7 +17,7 @@ const MessageBar = (props: Props) => {
         multiline
         value={textValue}
         onChangeText={setTextValue}
-        placeholder="Введи свой запрос"
+        placeholder={props.placeholder}
         placeholderTextColor="#000"
         className="flex-1 text-secondary text-base"
         style={{
@@ -34,12 +35,12 @@ const MessageBar = (props: Props) => {
         className="p-2"
         disabled={!textValue}
         onPress={() => {
-          props.sendQuestion(textValue);
-          setTextValue('');
+          props.sendMessage(textValue);
+          setTextValue("");
         }}
       >
         <Image
-          source={icons.send}
+          source={props.icon}
           className="w-6 h-6 size-5"
           style={{ tintColor: textValue ? "#7C3AED" : "gray" }}
         />

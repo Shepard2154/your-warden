@@ -1,4 +1,5 @@
 import MessageBar from "@/components/MessageBar";
+import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
 import { fetchAnswer } from "@/services/api";
 import { useCallback, useState } from 'react';
@@ -106,7 +107,9 @@ export default function Index() {
         <View className="absolute top-0 bottom-[70%] right-0 left-0 justify-center items-center">
           <View className="w-[90%] justify-center">
             <MessageBar
-              sendQuestion={(message) => {
+              icon={icons.send}
+              placeholder="Введи свой запрос"
+              sendMessage={(message) => {
                 setQuestionQuery(message);
                 getAnswer(message);
               }}
