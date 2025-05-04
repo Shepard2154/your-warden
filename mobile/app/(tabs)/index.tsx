@@ -27,6 +27,7 @@ export default function Index() {
 
     try {
       const data = await fetchAnswer({ query: questionQuery });
+      //@ts-ignore
       setAnswerData(data);
     } catch (err) {
       setAnswerError(err as Error);

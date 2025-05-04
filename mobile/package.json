@@ -1,5 +1,5 @@
 {
-  "name": "mobile",
+  "name": "yourwarden",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
+    "@google/genai": "^0.12.0",
+    "@react-native-async-storage/async-storage": "2.1.2",
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
@@ -29,7 +31,9 @@
     "expo-symbols": "~0.4.4",
     "expo-system-ui": "~5.0.6",
     "expo-web-browser": "~14.1.6",
+    "install": "^0.13.0",
     "nativewind": "^4.1.23",
+    "npm": "^11.3.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-native": "0.79.1",
@@ -40,8 +44,7 @@
     "react-native-screens": "~4.10.0",
     "react-native-web": "~0.20.0",
     "react-native-webview": "13.13.5",
-    "tailwindcss": "^3.4.17",
-    "@react-native-async-storage/async-storage": "2.1.2"
+    "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

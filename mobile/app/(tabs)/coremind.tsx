@@ -41,7 +41,7 @@ const coremind = () => {
         <View className="absolute top-0 bottom-[70%] right-0 left-0 justify-center items-center">
           <View className="w-[90%] justify-center">
             <MessageBar
-              icon={icons.save}
+              icon={icons.player}
               placeholder="Напиши новую цель"
               sendMessage={async (goal) => {
                 setGoal(goal);

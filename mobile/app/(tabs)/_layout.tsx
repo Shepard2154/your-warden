@@ -89,12 +89,12 @@ export default function _Layout() {
         }}
       />
       <Tabs.Screen
-        name="history"
+        name="settings"
         options={{
           headerShown: false,
-          title: "История",
+          title: "Настройки",
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.history} title={"История"} />
+            <TabIcon focused={focused} icon={icons.settings} title={"Настройки"} />
           ),
         }}
       />
