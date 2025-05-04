@@ -67,7 +67,7 @@ export default function Index() {
                 className="flex-1 justify-start items-center min-h-[50vh]"
               />
             ) : answerError ? (
-              <View className="flex-1 justify-center items-center min-h-[50vh]">
+              <View className="flex-1 justify-start items-center min-h-[50vh]">
                 <Text className="text-red-500 text-center my-5 text-4xl">
                   Ошибка: {answerError.message}
                 </Text>
@@ -89,7 +89,7 @@ export default function Index() {
                 </View>
               </View>
             ) : (
-              <View className="flex-1 justify-center items-center min-h-[80vh]">
+              <View className="flex-1 justify-start items-center min-h-[50vh]">
                 <View className="mb-10">
                   <Text className="font-semibold text-accent text-3xl text-center mb-4">
                     Hi, я твой ассистент на пути к цели!
