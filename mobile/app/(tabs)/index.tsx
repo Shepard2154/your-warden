@@ -1,8 +1,9 @@
 import MessageBar from "@/components/MessageBar";
 import { images } from "@/constants/images";
-import { useHeaderHeight } from "@react-navigation/elements";
-import { useState } from 'react';
+import { fetchAnswer } from "@/services/api";
+import { useCallback, useState } from 'react';
 import {
+  ActivityIndicator,
   Image,
   Keyboard,
   ScrollView,
@@ -12,8 +13,26 @@ import {
 } from "react-native";
 
 export default function Index() {
-  const [answer, setAnswer] = useState(null);
-  const height = useHeaderHeight();
+  const [questionQuery, setQuestionQuery] = useState<string | null>(null);
+  const [answerData, setAnswerData] = useState<string | null>(null);
+  const [answerIsLoading, setAnswerIsLoading] = useState(false);
+  const [answerError, setAnswerError] = useState<Error | null>(null);
+
+  const getAnswer = useCallback(async (questionQuery: string | null) => {
+    if (!questionQuery) return;
+
+    setAnswerIsLoading(true);
+    setAnswerError(null);
+
+    try {
+      const data = await fetchAnswer({ query: questionQuery });
+      setAnswerData(data);
+    } catch (err) {
+      setAnswerError(err as Error);
+    } finally {
+      setAnswerIsLoading(false);
+    }
+  }, []);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -24,32 +43,74 @@ export default function Index() {
           resizeMode="cover"
         />
 
-        <ScrollView
-          className="flex-1 px-5"
-          contentContainerStyle={{
-            minHeight: "100%",
-          }}
-          keyboardShouldPersistTaps="handled"
+        <View
+          className="absolute bottom-0 left-0 right-0"
+          style={{ maxHeight: "80%" }}
         >
-          {answer ? (
-            <Text className="text-white text-base pt-4">{answer}</Text>
-          ) : (
-            <View className="flex-1 justify-center items-center min-h-[80vh]">
-              <View>
-                <Text className="font-semibold text-accent text-3xl text-center mb-4">
-                  Hi, я твой ассистент на пути к цели!
-                </Text>
-                <Text className="font-semibold text-[#a8b5db] text-3xl text-center">
-                  Чем тебе сегодня помочь?
+          <ScrollView
+            className="px-5"
+            scrollEventThrottle={16}
+            keyboardShouldPersistTaps="handled"
+            overScrollMode="always"
+            nestedScrollEnabled={true}
+            removeClippedSubviews={false} // Важно для Android
+            collapsable={false} // Запрет оптимизации
+            style={{
+              zIndex: 1,
+              backgroundColor: "transparent", // Пример фона
+            }}
+          >
+            {answerIsLoading ? (
+              <ActivityIndicator
+                size="large"
+                color="#FFFFFF"
+                className="flex-1 justify-center items-center min-h-[50vh]"
+              />
+            ) : answerError ? (
+              <View className="flex-1 justify-center items-center min-h-[50vh]">
+                <Text className="text-red-500 text-center my-5 text-4xl">
+                  Ошибка: {answerError.message}
                 </Text>
               </View>
-            </View>
-          )}
-        </ScrollView>
+            ) : answerData ? (
+              <View
+                className="flex-1 justify-center items-center min-h-[50vh]"
+                onStartShouldSetResponder={() => true}
+              >
+                <View className="mb-10">
+                  <Text className="text-accent text-lg mb-2">Ваш вопрос:</Text>
+                  <Text className="text-white text-lg font-bold mb-4">
+                    {questionQuery}
+                  </Text>
+                  <Text className="text-accent text-lg mb-2">Ответ:</Text>
+                  <Text className="text-white text-lg font-bold">
+                    {answerData}
+                  </Text>
+                </View>
+              </View>
+            ) : (
+              <View className="flex-1 justify-center items-center min-h-[50vh]">
+                <View className="mb-10">
+                  <Text className="font-semibold text-accent text-3xl text-center mb-4">
+                    Hi, я твой ассистент на пути к цели!
+                  </Text>
+                  <Text className="font-semibold text-[#a8b5db] text-3xl text-center">
+                    Чем тебе сегодня помочь?
+                  </Text>
+                </View>
+              </View>
+            )}
+          </ScrollView>
+        </View>
 
-        <View className="absolute top-0 bottom-[50%] right-0 left-0 justify-center items-center">
-          <View className="w-[90%] min-h-16 border border-[#a8b5db] rounded-lg bg-slate-100 justify-center">
-            <MessageBar />
+        <View className="absolute top-0 bottom-[70%] right-0 left-0 justify-center items-center">
+          <View className="w-[90%] min-h-16 justify-center">
+            <MessageBar
+              sendQuestion={(message) => {
+                setQuestionQuery(message);
+                getAnswer(message);
+              }}
+            />
           </View>
         </View>
       </View>

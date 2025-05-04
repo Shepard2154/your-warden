@@ -2,7 +2,11 @@ import { icons } from "@/constants/icons";
 import React, { useState } from 'react';
 import { Image, Platform, TextInput, TouchableOpacity, View } from "react-native";
 
-const MessageBar = () => {
+type Props = {
+  sendQuestion: (question: string) => void;
+};
+
+const MessageBar = (props: Props) => {
   const [isFocused, setIsFocused] = useState(false);
   const [textValue, setTextValue] = useState('');
 
@@ -13,20 +17,27 @@ const MessageBar = () => {
         value={textValue}
         onChangeText={setTextValue}
         placeholder="Введи свой запрос"
-        placeholderTextColor="#a8b5db"
-        className="flex-1 text-secondary bg-white text-base"
+        placeholderTextColor="#000"
+        className="flex-1 text-secondary text-base"
         style={{
           maxHeight: 120,
           paddingTop: Platform.select({ ios: 12, android: 8 }),
           paddingBottom: Platform.select({ ios: 12, android: 8 }),
-          textAlignVertical: 'center',
+          textAlignVertical: "center",
           includeFontPadding: false,
         }}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
-      
-      <TouchableOpacity className="p-2" disabled={!textValue}>
+
+      <TouchableOpacity
+        className="p-2"
+        disabled={!textValue}
+        onPress={() => {
+          props.sendQuestion(textValue);
+          setTextValue('');
+        }}
+      >
         <Image
           source={icons.send}
           className="w-6 h-6 size-5"
