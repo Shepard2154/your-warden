@@ -12,7 +12,7 @@ import {
 } from "react-native";
 
 
-const coremind = () => {
+const Coremind = () => {
   const [goal, setGoal] = useState<null | string>(null);
   const { getItem, setItem } = useAsyncStorage("GOAL");
 
@@ -57,5 +57,5 @@ const coremind = () => {
   );
 }
 
-export default coremind
+export default Coremind
 

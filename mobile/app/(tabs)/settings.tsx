@@ -13,7 +13,7 @@ import {
   View
 } from "react-native";
 
-const settings = () => {
+const Settings = () => {
   const apiUrl = "https://ai.google.dev/gemini-api/docs";
   const [key, setKey] = useState<string | null>(null);
   const { getItem, setItem } = useAsyncStorage("API_KEY");
@@ -64,6 +64,6 @@ const settings = () => {
   );
 }
 
-export default settings;
+export default Settings;
 
 const styles = StyleSheet.create({})

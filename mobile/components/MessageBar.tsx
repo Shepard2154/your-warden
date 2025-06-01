@@ -33,8 +33,10 @@ const MessageBar = (props: Props) => {
 
       <TouchableOpacity
         className="p-2"
+        testID="send-button"
         disabled={!textValue}
         onPress={() => {
+          if (!textValue.trim()) return;
           props.sendMessage(textValue);
           setTextValue("");
         }}
@@ -43,6 +45,7 @@ const MessageBar = (props: Props) => {
           source={props.icon}
           className="w-6 h-6 size-5"
           style={{ tintColor: textValue ? "#7C3AED" : "gray" }}
+          testID="send-icon"
         />
       </TouchableOpacity>
     </View>

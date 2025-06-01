@@ -37,7 +37,7 @@ export default function Index() {
   }, []);
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} testID="screen-touchable">
       <View className="flex-1 bg-primary">
         <Image
           source={images.bg}
@@ -67,6 +67,7 @@ export default function Index() {
                 size="large"
                 color="#FFFFFF"
                 className="flex-1 justify-start items-center min-h-[50vh]"
+                testID="loader"
               />
             ) : answerError ? (
               <View className="flex-1 justify-start items-center min-h-[50vh]">
